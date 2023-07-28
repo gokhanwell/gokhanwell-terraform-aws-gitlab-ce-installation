@@ -9,3 +9,9 @@ gokhanwell/terraform-aws-gitlab-ce-installation
 ## A password for root user is randomly generated and stored for 24 hours in /etc/gitlab/initial_root_password. You can check the password with the commands below. (username > root)
 
     cat /etc/gitlab/initial_root_password
+
+
+![alt text](https://github.com/gokhanwell/terraform-aws-gitlab-ce-installation/blob/main/gitlab.png)
+
+
+![alt text](https://github.com/gokhanwell/terraform-aws-gitlab-ce-installation/blob/main/gitlab-dashboard.png)
