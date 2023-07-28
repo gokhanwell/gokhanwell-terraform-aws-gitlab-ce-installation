@@ -26,3 +26,11 @@ variable "secgrname" {
 variable "storage" {
   default = "40"
 }
+
+variable "domain_name" {
+  default = "gokhanyardimci.com."
+}
+
+variable "gitlab_domain_name" {
+  default = "gitlab.gokhanyardimci.com."
+}

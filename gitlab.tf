@@ -47,6 +47,12 @@ resource "aws_security_group" "Terraform-Gitlab-Sec-Gr" {
     to_port     = 80
     cidr_blocks = ["0.0.0.0/0"]
   }
+  ingress {
+    from_port   = 443
+    protocol    = "tcp"
+    to_port     = 443
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
   egress {
     from_port   = 0
@@ -55,6 +61,20 @@ resource "aws_security_group" "Terraform-Gitlab-Sec-Gr" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
+data "aws_route53_zone" "hosted_zone" {
+  name = var.domain_name
+}
+
+resource "aws_route53_record" "Terraform-Route53-Record" {
+  zone_id = data.aws_route53_zone.hosted_zone.id
+  name    = var.gitlab_domain_name
+  type    = "A"
+  ttl     = 300 
+  records = [aws_instance.Terraform-Gitlab-Server.public_ip]
+
+}
+
 
 output "gitlab" {
   value = "http://${aws_instance.Terraform-Gitlab-Server.public_ip}:80"
